@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
+import { getRedirectResult } from 'firebase/auth';
+
 import { initializeApp} from 'firebase/app';
 import { 
     getAuth, 
     signInWithRedirect, 
     signInWithPopup, 
-    GoogleAuthProvider
+    GoogleAuthProvider, 
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -21,21 +26,23 @@ const firebaseConfig = {
     appId: "1:459377359690:web:518f66a1fcb00aa290dfb3"
   };
   
-
   const firebaseApp = initializeApp(firebaseConfig);
 
-  const provider = new GoogleAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
 
-  provider.setCustomParameters({
+  googleProvider.setCustomParameters({
     prompt: "select_account"
   });
 
   export const auth = getAuth();
-  export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+  export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
+  export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
 
   export const db = getFirestore();
 
-  export const createUserDocumentFromAuth = async (userAuth) => {
+  export const createUserDocumentFromAuth = async (userAuth, additionalInformation) => {
+    if (!userAuth) return;
+
     const userDocRef = doc(db, 'users', userAuth.uid);
 
     console.log(userDocRef);
@@ -52,7 +59,8 @@ const firebaseConfig = {
         await setDoc(userDocRef, {
           displayName,
           email,
-          createdAt
+          createdAt,
+          ...additionalInformation
         })
       }catch(error) {
         console.log('error creting the user', error.message);
@@ -60,4 +68,17 @@ const firebaseConfig = {
     }
 
     return userDocRef;
+  }
+
+  export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if(!email|| ! password) return;
+
+    return await createUserWithEmailAndPassword(auth, email, password)
+  };
+
+  export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+    if(!email|| ! password) return;
+
+    return await signInAuthUserWithEmailAndPassword(auth, email, password)
+
   }
