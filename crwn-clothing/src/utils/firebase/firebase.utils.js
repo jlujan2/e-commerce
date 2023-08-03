@@ -1,14 +1,11 @@
-import { useEffect } from 'react';
-import { getRedirectResult } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
 
-import { initializeApp} from 'firebase/app';
 import { 
     getAuth, 
     signInWithRedirect, 
     signInWithPopup, 
     GoogleAuthProvider, 
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged
 } from 'firebase/auth';
@@ -31,7 +28,7 @@ const firebaseConfig = {
     messagingSenderId: "459377359690",
     appId: "1:459377359690:web:518f66a1fcb00aa290dfb3"
   };
-  
+
   const firebaseApp = initializeApp(firebaseConfig);
 
   const googleProvider = new GoogleAuthProvider();
