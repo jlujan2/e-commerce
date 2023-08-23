@@ -9,11 +9,12 @@ import './shop.styles.scss';
 const Shop = () => {
 
     return (
-       <Routes>
+       
+        <Routes>
             <Route index element={<CategoriesPreview/>}></Route>
             <Route path=":category" element={<Category/>}></Route>
-
-       </Routes>
+        </Routes>
+       
     );
 };
 
