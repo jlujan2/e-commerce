@@ -35,7 +35,8 @@ module.exports = {
         "no-unused-vars": [
             "error",
             {
-                "varsIgnorePattern": "firebaseApp"
+                "varsIgnorePattern": "React",
+                "varsIgnorePattern": "firebaseApp",
             }
         ],
     }

@@ -10,20 +10,18 @@ import {setCurrentUser} from './store/user/user.action';
 import { useDispatch } from 'react-redux';
 
 const App = () => {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
-      console.log(user);
+      
         if(user) {
             createUserDocumentFromAuth(user);
         }
-
         dispatch(setCurrentUser(user));
     });
     return unsubscribe;
-  }, [dispatch]);
+  }, []);
 
   return (
   <Routes>
