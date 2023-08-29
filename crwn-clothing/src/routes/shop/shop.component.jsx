@@ -12,9 +12,9 @@ const Shop = () => {
 
     useEffect(() => {
         //NOTE: ANY ASYC FUNCTION YOU HAVE WRAPPED IN ASYNC FUNCTION
+
         const getCategoriesMap = async () => {
             const categoriesArray = await getCategoriesAndDocuments('categories');
-            console.log(categoriesArray);
             dispatch(setCategories(categoriesArray));
         }
 
@@ -22,7 +22,6 @@ const Shop = () => {
     }, []);
 
     return (
-       
         <Routes>
             <Route index element={<CategoriesPreview/>}></Route>
             <Route path=":category" element={<Category/>}></Route>
