@@ -4,7 +4,7 @@ import CategoriesPreview from '../categories-preview/categories-preview.componen
 import { getCategoriesAndDocuments } from '../../utils/firebase/firebase.utils';
 import Category from '../category/category.component';
 import { useDispatch } from 'react-redux';
-import {setCategories} from '../../store/category/categories.action'
+import {fetchCategoriesStart} from '../../store/category/categories.action'
 import './shop.styles.scss';
 
 const Shop = () => {
@@ -15,7 +15,7 @@ const Shop = () => {
 
         const getCategoriesMap = async () => {
             const categoriesArray = await getCategoriesAndDocuments('categories');
-            dispatch(setCategories(categoriesArray));
+            dispatch(fetchCategoriesStart());
         }
 
         getCategoriesMap();

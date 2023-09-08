@@ -2,21 +2,21 @@ import { CART_ACTION_TYPES } from "./cart.types";
 import { createAction } from "../../utils/reducer/reducer.utils";
 
 export const setIsCartOpen = (boolean) =>
-    createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean);
+ createAction(CART_ACTION_TYPES.SET_IS_CART_OPEN, boolean);
 
 export const addItemToCart = (cartItems, product) => {
     const newCartItems = addCartItem(cartItems, product);
-    createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
+    return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 
 export const removeItemToCart = (cartItems, cartItemToRemove) => {
     const newCartItems = removeCartItem(cartItems, cartItemToRemove);
-    createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
+    return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 
 export const clearItemFromCart = (cartItems, cartItemToClear) => {
     const newCartItems = clearCartItem(cartItems, cartItemToClear);
-    createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
+    return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 
 export const addCartItem = (cartItems, productToAdd) => {
