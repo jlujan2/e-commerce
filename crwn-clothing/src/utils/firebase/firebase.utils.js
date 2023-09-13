@@ -21,6 +21,7 @@ import {
   getDocs
 } from 'firebase/firestore'
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyB7MVSJx3G6D6NVBf0Qkqq23N_wt4UUYXM",
     authDomain: "crwn-clothing-db-ac079.firebaseapp.com",
@@ -92,7 +93,7 @@ const firebaseConfig = {
       }
     }
 
-    return userDocRef;
+    return userSnapshot;
   }
 
   export const createAuthUserWithEmailAndPassword = async (email, password) => {

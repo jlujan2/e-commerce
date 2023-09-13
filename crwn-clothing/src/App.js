@@ -5,14 +5,14 @@ import Authentication from './routes/authentication/authentication.component';
 import Shop from './routes/shop/shop.component';
 import Checkout from './routes/checkout/checkout.component';
 import {useEffect} from 'react';
-import {getCurrentUser} from './utils/firebase/firebase.utils';
-
+import { checkUserSession } from './store/user/user.action';
+import { useDispatch } from 'react-redux';
 
 const App = () => {
- 
+  const dispath = useDispatch();
 
   useEffect(() => {
-    getCurrentUser().then((user) => console.log(user))
+    dispath(checkUserSession());
   }, []);
 
   return (
