@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  e-commerce:
+    container_name: e-commerce-react
+    image: juank155/e-commerce-react:latest
+    ports: 
+      - "3000:3000"
